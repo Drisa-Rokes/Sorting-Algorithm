@@ -1,16 +1,76 @@
+function speak() {
+  //speechSynthesis.speak(new SpeechSynthesisUtterance("hello world"));
+}
+
+
+
 function creatbar(){
- var height = document.getElementById("visual").offsetHeight;
- document.getElementById("bar0").style.height=height-20+"px";
- var w = document.getElementById("visual").offsetWidth;
- for(var i=1;i<w/10;i++){
+ // var height = document.getElementById("visual").offsetHeight;
+ 
+ // var w = document.getElementById("visual").offsetWidth;
+
+
+
+var a=[120 ,40,67,5,16,14,20,40,60,20];
+var i=0;
+var max=Math.max(...a);
+
+for(i=0; i<a.length; i++)
+    {
+        a[i]= a[i] *380/max;
+    }
+
+
+
+ document.getElementById("bar0").style.height=a[0]+"px";
+ //document.getElementById("bar0").style.height=height-20+"px";
+ for(var i=1;i<a.length;i++){
      var bar= document.getElementById("bar0").cloneNode(true);
      bar.id = "bar"+i;
-     bar.style.height = String(Math.floor(Math.random()*(height-20)))+"px";
-     document.getElementById("visual").appendChild(bar)
+     bar.style.height = String(a[i])+"px";
+     //bar.style.height = String(Math.floor(Math.random()*(height-20)))+"px";
+
+     document.getElementById("visual").appendChild(bar);
  }     
 }
 
+
 creatbar()
+
+function wish(){
+    var d = new Date();
+    var hour=d.getHours();
+    msg="";
+    if(hour<12)
+        msg="Good Morinig";
+    if(hour>12 && hour<18)
+        msg="Good AfterNoon";
+    if(hour>=18 &&hour<=21)
+        msg="Good Evening";
+    if(hour>21 && hour<=24)
+        ms="Good Night";
+    console.log(msg);
+
+}
+
+function start()
+{
+     var input=document.getElementById("input").value;
+    console.log(input);
+    input = input.replace(/[,.]/g , ''); 
+//   var i=0;
+//   for(i=0;input.length ;i++)
+//   {
+//     input[i]=parseInt(input[i]);
+//   }
+//   console.log(input);
+// }
+
+}
+wish();
+
+
+
 function sleep(delay){
     return new Promise(resolve=>setTimeout(resolve,delay));
 }
@@ -35,6 +95,7 @@ else{
 
 async function Bubblesort(){
     deactivate(1);
+    document.getElementById("name").innerHTML="Bubble Sort";
     var array = document.getElementById("visual")
     var n= array.childElementCount
     for(var i=0;i<n;i++){
@@ -63,6 +124,7 @@ async function Bubblesort(){
 
 async function selectionSort()  
 { deactivate(1);
+    document.getElementById("name").innerHTML="Selection Sort";
     var array = document.getElementById("visual")
     var n= array.childElementCount  
     // One by one move boundary of unsorted subarray  
@@ -100,6 +162,7 @@ async function selectionSort()
 async function insertion_Sort(){
 
     deactivate(1);
+    document.getElementById("name").innerHTML="Insertion Sort";
     //getting numver of bars
     var array = document.getElementById("visual")
     var n= array.childElementCount
